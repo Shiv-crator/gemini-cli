@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Infinite - Dashboard</title>
+    <style>
+        :root { --primary: #00d4ff; --bg: #050505; --card: #111; --text: #eee; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; }
+        
+        /* Sidebar */
+        .sidebar { width: 250px; background: #000; height: 100vh; padding: 20px; border-right: 1px solid #333; }
+        .sidebar h2 { color: var(--primary); font-size: 1.2rem; letter-spacing: 1px; }
+        .nav-item { padding: 15px; margin: 10px 0; cursor: pointer; border-radius: 8px; transition: 0.3s; }
+        .nav-item:hover { background: #222; color: var(--primary); }
+        .nav-active { background: var(--primary); color: #000; font-weight: bold; }
+
+        /* Main Content */
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .stat-card { background: var(--card); padding: 25px; border-radius: 15px; border: 1px solid #222; text-align: center; }
+        .stat-card h3 { font-size: 0.9rem; color: #888; margin-bottom: 10px; }
+        .stat-card .value { font-size: 2rem; font-weight: bold; color: var(--primary); }
+
+        /* Model List Table */
+        .model-section { margin-top: 40px; background: var(--card); padding: 20px; border-radius: 15px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th { text-align: left; color: #888; padding: 12px; border-bottom: 1px solid #333; }
+        td { padding: 12px; border-bottom: 1px solid #222; }
+
+        .btn-upload { background: var(--primary); color: #000; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; float: right; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>GEMINI INFINITE</h2>
+        <div class="nav-item nav-active">📊 Overview</div>
+        <div class="nav-item">📦 Model Registry</div>
+        <div class="nav-item">💳 Billing & Stripe</div>
+        <div class="nav-item">⚙️ Settings</div>
+        <div class="nav-item" onclick="window.location.href='index.html'">🏠 Exit to Home</div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Welcome, Admin</h1>
+            <a href="#" class="btn-upload">+ Upload New Model</a>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Active Models</h3>
+                <div class="value">Unlimited</div>
+            </div>
+            <div class="stat-card">
+                <h3>API Calls (24h)</h3>
+                <div class="value">Infinite</div>
+            </div>
+            <div class="stat-card">
+                <h3>System Status</h3>
+                <div class="value" style="color: #00ff00;">Online</div>
+            </div>
+            <div class="stat-card">
+                <h3>Revenue</h3>
+                <div class="value">$0.00</div>
+            </div>
+        </div>
+
+        <div class="model-section">
+            <h2>Supreme V1000 Registry</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model Name</th>
+                        <th>Status</th>
+                        <th>Type</th>
+                        <th>Endpoint</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Gemini-Prime-V1</strong></td>
+                        <td><span style="color: #00ff00;">● Active</span></td>
+                        <td>Hybrid LLM</td>
+                        <td>/predict/v1</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Infinite-Vision-X</strong></td>
+                        <td><span style="color: #00ff00;">● Active</span></td>
+                        <td>Image Gen</td>
+                        <td>/predict/vision</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
+
