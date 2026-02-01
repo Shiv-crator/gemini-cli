@@ -1,0 +1,12 @@
+{
+  "name": "gemini-infinite-unlimited",
+  "version": "1.0.0",
+  "description": "Infinite Unlimited Hybrid AI Platform",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve ."
+  },
+  "author": "aisahabalive@gmail.com",
+  "license": "MIT"
+}
+
