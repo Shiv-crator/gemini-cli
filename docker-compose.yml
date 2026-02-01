@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: gemini
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - db
+      - redis
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/gemini
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-sk_test_xxx}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-whsec_xxx}
+      MODEL_STORE_URL: ${MODEL_STORE_URL:-/models}
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/app
+    # For local scaling you can run: docker compose up --scale app=3
+    # For production use a container orchestrator (Kubernetes / ECS / Swarm) and set resource limits.
+
+  worker:
+    image: python:3.11-slim
+    restart: unless-stopped
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: ["sh", "-c", "pip install -r requirements.txt && python -u worker.py"]
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/gemini
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  db-data:
