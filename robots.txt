@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap Link for Shiv Crator
+Sitemap: https://shiv-crator.github.io/sitemap.xml
+
+# Platform Pages
+Allow: /index.html
+Allow: /dashboard.html
+Allow: /about.html
+Allow: /contact.html
+Allow: /privacy.html
+Allow: /terms.html
+
+# Security - Blocking sensitive folders
+Disallow: /config/
+Disallow: /private/
+
