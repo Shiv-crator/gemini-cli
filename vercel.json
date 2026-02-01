@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "gemini-infinite-unlimited",
+  "cleanUrls": true,
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/$1" }
+  ]
+}
+
